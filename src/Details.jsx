@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const Details = () => {
@@ -6,14 +6,23 @@ const Details = () => {
 
 	const { id } = useParams();
 
-	console.log(id);
+	useEffect(() => {
+		fetch(`http://www.omdbapi.com/?apikey=61bac264&i=${id}`)
+			.then((res) => {
+				return res.json();
+			})
+			.then((data) => {
+				setMovies(data);
+			});
+	}, [id]);
 
-	useEffect(() => {}, []);
+	console.log(movies);
 	return (
 		<div>
 			{' '}
 			this is details page Details
-			{}
+			<br />
+			{movies?.Title}
 		</div>
 	);
 };
