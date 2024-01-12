@@ -6,26 +6,37 @@ import MovieList from './MovieList';
 function App() {
 	const [movies, setMovies] = useState();
 	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 5;
 	
 	// 61bac264
 
 	const handleFetch = (page) => {
+		const startIndex = (page - 1) * itemsPerPage + 1;
+		const endIndex = startIndex + itemsPerPage - 1; 
+
 		fetch(`http://www.omdbapi.com/?apikey=61bac264&s=marvel&page=${page}`)
 			.then((res) => {
 				return res.json();
 			})
 			.then((data) => {
-				console.log(data);
-				setMovies(data);
+				const slicedData = data.Search ? data.Search.slice(startIndex - 1, endIndex) : [];
+				setMovies(slicedData);
 			});
 	};
 	useEffect(() => {
 		const fetchData = () => {
 			const newData = handleFetch(currentPage);
+
+			// const startIndex = (currentPage - 1) * itemsPerPage;
+      		// const endIndex = startIndex + itemsPerPage;
+			
+			// const fiveMovies = newData ? newData.slice(startIndex, endIndex) : [];
+			
 			setMovies(newData);
+			console.log(movies);
 		};
 		fetchData();
-	}, [currentPage]);
+	}, [currentPage,itemsPerPage]);
 
 	const handleNextPage = () => {
 		setCurrentPage((prevPage) => prevPage + 1);
@@ -38,9 +49,6 @@ function App() {
 		<>
 			<div>
 				<Navbar />
-				{/* <button className='btn btn-sm btn-primary' onClick={handleFetch}>
-					Fetch
-				</button> */}
 				<MovieList movies={movies?.Search} />
 			</div>
 			{movies ? (

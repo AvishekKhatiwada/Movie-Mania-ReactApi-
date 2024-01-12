@@ -39,7 +39,7 @@
 }
 
 .navbar{
-  background-color: #0B212F;
+  background-color: #3E3232;
 }
 
 .nav-link, .navbar-brand{
@@ -66,13 +66,13 @@
 }
 
 .title-heading{
-  background-color: rgb(54, 97, 128);
+  background-color: #503C3C;
   color: rgb(247, 248, 249);
   font-size: larger;
   font-family: Comic Sans MS, Comic Sans, cursive;
 }
 .details{
-  background-color: #DFF6FF;
+  background-color: #A87C7C;
   color: #0B212F; 
 }
 
@@ -88,7 +88,7 @@
   padding: 5px 5px 5px 0;
 }
 .Ratings{
-  background-color: rgb(80, 189, 232);
+  background-color: #503C3C;
   width: 7.5rem;
   height: 7.5rem;
   padding: 5px;
