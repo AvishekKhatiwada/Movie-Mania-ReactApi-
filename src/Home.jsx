@@ -26,14 +26,6 @@ function App() {
 	useEffect(() => {
 		const fetchData = () => {
 			const newData = handleFetch(currentPage);
-
-			// const startIndex = (currentPage - 1) * itemsPerPage;
-      		// const endIndex = startIndex + itemsPerPage;
-			
-			// const fiveMovies = newData ? newData.slice(startIndex, endIndex) : [];
-			
-			setMovies(newData);
-			console.log(movies);
 		};
 		fetchData();
 	}, [currentPage,itemsPerPage]);
