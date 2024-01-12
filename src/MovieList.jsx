@@ -6,11 +6,11 @@ const MovieList = ({ movies }) => {
 	return (
 		<>
 			<div className='movie-lists d-flex'>
-				{movies ? ( 
+				{movies ? (
 					<>
 						{movies.map((data, i) => (
 							<div key={i} className='card'>
-								<img src={data.Poster} className='card-img-top' />
+								{data.Poster !== 'N/A' ? <img src={data?.Poster} className='card-img-top' style={{ minHeight: '20rem', maxHeight: '20rem' }} /> : 'poster xina'}
 								<div className='card-body'>
 									<h5 className='card-title'>{data.Title}</h5>
 									{/* <p className='card-text'>{data.Year}</p> */}
