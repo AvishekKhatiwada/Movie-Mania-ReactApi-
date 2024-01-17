@@ -26,7 +26,7 @@ const Details = () => {
 			</div>
 			<div className="details p-2 d-flex">
 				<div className="w-25">
-					<img className="movie-poster img-fluid" src={movies?.Poster} />
+					{movies?.Poster !=='N/A' ? <img className="movie-poster img-fluid" src={movies?.Poster} /> : <img className="movie-poster img-fluid" src="https://www.shutterstock.com/shutterstock/photos/549465931/display_1500/stock-vector-not-available-grunge-rubber-stamp-on-white-background-vector-illustration-549465931.jpg"/> }
 				</div>
 				<div className="w-75 d-flex p-5">
 					<div className="w-50 text-start p-2">

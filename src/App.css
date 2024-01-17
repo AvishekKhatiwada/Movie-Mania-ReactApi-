@@ -59,9 +59,11 @@
 .card{
   padding: 4px;
 }
+.all-body{
 
+  background-color: #A87C7C;
+}
 .movie-lists{
-  background-color: rgb(244, 225, 225);
   padding: 5px 8px;
 }
 
@@ -88,7 +90,8 @@
   padding: 5px 5px 5px 0;
 }
 .Ratings{
-  background-color: #503C3C;
+  background-color: #FFF2D8;
+  border-radius: 4px;
   width: 7.5rem;
   height: 7.5rem;
   padding: 5px;
@@ -104,4 +107,13 @@
 .Rating-value{
   font-family: cursive;
   font-size: xx-large;
+}
+.searchDiv{
+  margin: 1px;
+  padding: 8px;
+  display: flex;
+  justify-content: end;
+}
+.searchBar{
+  width: 14rem;
 }

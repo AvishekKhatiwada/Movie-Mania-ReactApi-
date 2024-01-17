@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Navbar from './Navbar';
 import MovieList from './MovieList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
 	const [movies, setMovies] = useState();
@@ -20,7 +21,7 @@ function App() {
 			})
 			.then((data) => {
 				const slicedData = data.Search ? data.Search.slice(startIndex - 1, endIndex) : [];
-				console.log(movies);
+				console.log(data);
 				setMovies(slicedData);
 			});
 	};
@@ -37,8 +38,13 @@ function App() {
 	};
 	return (
 		<>
-			<div>
+			<div className="all-body">
 				<Navbar />
+				{/* <Navbar brand={"Trending"} item1={"Movies"} item2={"Tv Shows"} /> */}
+				<div className="searchDiv">
+                    <input type="text" class="searchBar form-control rounded" placeholder="Search movie...."
+                        aria-label="Search" aria-describedby="search-addon"/>                        
+				</div>
 				<MovieList movies={movies} />
 			</div>
 			{movies ? (
