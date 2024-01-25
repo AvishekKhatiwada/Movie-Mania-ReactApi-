@@ -3,14 +3,18 @@ import './App.css';
 import Navbar from './Navbar';
 import MovieList from './MovieList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useFetch from './useFetch';
+import Firstpage from './Firstpage';
 
 function App() {
 	const [movies, setMovies] = useState();
 	const [currentPage, setCurrentPage] = useState(1);
+	const [searchTerm, setSearchTerm] = useState(''); 
 	const itemsPerPage = 5;
 
 	// 61bac264
 
+	//Fetching from api
 	const handleFetch = (page) => {
 		const startIndex = (page - 1) * itemsPerPage + 1;
 		const endIndex = startIndex + itemsPerPage - 1;
@@ -29,25 +33,50 @@ function App() {
 		handleFetch(currentPage);
 	}, [currentPage]);
 
+	// useEffect(()=>{
+	// 	const movies = useFetch(`http://www.omdbapi.com/?apikey=61bac264&s=marvel&page=${page}`,currentPage);
+	// },[currentPage])
+	//Pagination Next Page
 	const handleNextPage = () => {
 		setCurrentPage((prevPage) => prevPage + 1);
 	};
 
+	//Pagination previous page
 	const handlePrevPage = () => {
 		setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
 	};
+
+	//handling Search
+	const handleSearch = async ()=>{
+		const startIndex =1;
+		const endIndex = startIndex + itemsPerPage - 1;
+
+		console.log(searchTerm);
+		try {
+			const response = await fetch(`http://www.omdbapi.com/?apikey=61bac264&s=${searchTerm}`);
+			const data = await response.json();
+			const slicedData = data.Search ? data.Search.slice(startIndex - 1, endIndex) : [];
+			setMovies(slicedData);
+		} catch (error) {
+			console.error('Error Fetching Data: ',error);
+			
+		}
+	}
 	return (
 		<>
 			<div className="all-body">
 				<Navbar />
+				<Firstpage /> 
 				{/* <Navbar brand={"Trending"} item1={"Movies"} item2={"Tv Shows"} /> */}
-				<div className="searchDiv">
-                    <input type="text" class="searchBar form-control rounded" placeholder="Search movie...."
-                        aria-label="Search" aria-describedby="search-addon"/>                        
-				</div>
-				<MovieList movies={movies} />
+				{/* <div className="searchDiv">
+                    <input type="text" className="searchBar form-control rounded"
+					 value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
+					  aria-label="Search" aria-describedby="search-addon"/>   
+					<button onClick={handleSearch}>Search</button>                     
+				</div> */}
+				{/* <MovieList movies={movies} /> */}
 			</div>
-			{movies ? (
+			{/* {movies ? (
 				<nav aria-label='Page navigation'>
 					<ul className='pagination'>
 						{currentPage > 1 ? (
@@ -73,7 +102,7 @@ function App() {
 				</nav>
 			) : (
 				<></>
-			)}
+			)} */}
 		</>
 	);
 }
