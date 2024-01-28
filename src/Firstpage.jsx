@@ -19,8 +19,8 @@ function App() {
 						<button className="btn btn-success srchbtn">Search</button>
 					</div>
 					<div className="btn-conteiner mt-5">
-						<Link className='homeBtn' to={'/home'}>
-							<a className="btn-content">
+						<Link className='homeBtn btn-content' to={'/home'}>
+							{/* <a className="btn-content"> */}
 								<span className="btn-title">View Full Site</span>
 								<span className="icon-arrow">
 									<svg width="60px" height="39px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -31,7 +31,7 @@ function App() {
 										</g>
 									</svg>
 								</span>
-							</a>
+							{/* </a> */}
 						</Link>
 					</div>
 					<div className="website-details mt-3">
@@ -40,9 +40,9 @@ function App() {
 								<span>What is MovieMania?</span>
 							</strong><br />
 							MovieMania is a comprehensive website dedicated to providing detailed information about a wide range of movies available online. It serves as a one-stop destination for film enthusiasts, offering an extensive database that includes everything from the latest releases to timeless classics.
-							<p>
+							{/* <p> */}
 								MovieMania is not just a movie database but a dynamic platform that celebrates the art of storytelling and the joy of discovering new films. It aims to cater to the diverse tastes and interests of its users, providing a holistic and enjoyable experience for anyone passionate about the world of cinema.
-							</p>
+							{/* </p> */}
 						</p>
 
 						<p>

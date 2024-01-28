@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import MovieList from "./MovieList";
+import useFetch from "./useFetch";
 
 const Home = () => {
 
@@ -13,8 +14,8 @@ const Home = () => {
 
 	//Fetching from api
 	// const handleFetch = (page) => {
-	// 	const startIndex = (page - 1) * itemsPerPage + 1;
-	// 	const endIndex = startIndex + itemsPerPage - 1;
+		const startIndex = (currentPage - 1) * itemsPerPage + 1;
+		const endIndex = startIndex + itemsPerPage - 1;
 
 	// 	fetch(`http://www.omdbapi.com/?apikey=61bac264&s=marvel&page=${page}`)
 	// 		.then((res) => {
@@ -26,6 +27,13 @@ const Home = () => {
 	// 			setMovies(slicedData);
 	// 		});
 	// };
+
+	//new code
+	useEffect(() => {
+		const {data} = useFetch('http://www.omdbapi.com/?apikey=61bac264&s=marvel&page=1');
+		const slicedData = data ? data.slice(startIndex -1, endIndex) : [];
+		setMovies(slicedData);
+	},[currentPage]);
 	// useEffect(() => {
 	// 	handleFetch(currentPage);
 	// }, [currentPage]);
@@ -34,31 +42,33 @@ const Home = () => {
 	// 	const movies = useFetch(`http://www.omdbapi.com/?apikey=61bac264&s=marvel&page=${page}`,currentPage);
 	// },[currentPage])
 	//Pagination Next Page
-	// const handleNextPage = () => {
-	// 	setCurrentPage((prevPage) => prevPage + 1);
-	// };
+	const handleNextPage = () => {
+		setCurrentPage((prevPage) => prevPage + 1);
+		console.log(currentPage);
+	};
 
 	//Pagination previous page
-	// const handlePrevPage = () => {
-	// 	setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-	// };
+	const handlePrevPage = () => {
+		setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+		console.log(currentPage);
+	};
 
 	//handling Search
-	const handleSearch = async ()=>{
-		const startIndex =1;
-		const endIndex = startIndex + itemsPerPage - 1;
+	// const handleSearch = async ()=>{
+	// 	const startIndex =1;
+	// 	const endIndex = startIndex + itemsPerPage - 1;
 
-		console.log(searchTerm);
-		try {
-			const response = await fetch(`http://www.omdbapi.com/?apikey=61bac264&s=${searchTerm}`);
-			const data = await response.json();
-			const slicedData = data.Search ? data.Search.slice(startIndex - 1, endIndex) : [];
-			setMovies(slicedData);
-		} catch (error) {
-			console.error('Error Fetching Data: ',error);
+	// 	console.log(searchTerm);
+	// 	try {
+	// 		const response = await fetch(`http://www.omdbapi.com/?apikey=61bac264&s=${searchTerm}`);
+	// 		const data = await response.json();
+	// 		const slicedData = data.Search ? data.Search.slice(startIndex - 1, endIndex) : [];
+	// 		setMovies(slicedData);
+	// 	} catch (error) {
+	// 		console.error('Error Fetching Data: ',error);
 
-		}
-	}
+	// 	}
+	// }
 
     return (
         <>
@@ -70,7 +80,7 @@ const Home = () => {
 					  aria-label="Search" aria-describedby="search-addon"/>   
 					<button onClick={handleSearch}>Search</button>                     
 				</div> */}
-                <MovieList />
+                <MovieList movies={movies}/>
             </div>
             {/* <div className="all-body">
 				<Navbar />
@@ -84,7 +94,7 @@ const Home = () => {
 				</div> */}
 			{/* <MovieList movies={movies} /> */}
 			{/* </div> */}
-			{/* {movies ? (
+			{movies ? (
 				<nav aria-label='Page navigation'>
 					<ul className='pagination'>
 						{currentPage > 1 ? (
@@ -110,7 +120,7 @@ const Home = () => {
 				</nav>
 			) : (
 				<></>
-			)} */}
+			)}
         </>
     );
 }

@@ -6,6 +6,7 @@ const MovieList = ({ movies }) => {
 	return (
 		<>
 			<div className='movie-lists d-flex'>
+				{console.log(movies)}
 				{movies ? (
 					<>
 						{movies.map((data, i) => (
