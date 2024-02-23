@@ -54,7 +54,7 @@ function App() {
 
 						<p>
 							<strong>
-								<span>Is SFlix safe?</span>
+								<span>Is MovieMania safe?</span>
 							</strong><br />
 							MovieMania is a new site so it is understandable if our security is questioned. There has not been much feedback about the site’s safety for references, but you should not be worried about your safety here. MovieManiais ad-free; therefore, you are safe from viruses, trojans, malware, and other malicious computer programs. MovieMania does not require you to reveal any private information for a signup; therefore, you are also safe from information leakage and identity theft. Unlike other free movie sites, you do not need to use a VPN, anti-virus program, and ADBlock extension surfing MovieMania. And with these features, we are confident that it will be the best website to look for movie details.<br />
 							- An enormous collection of movie details.<br />

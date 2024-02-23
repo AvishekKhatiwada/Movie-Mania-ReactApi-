@@ -5,17 +5,21 @@ import useFetch from "./useFetch";
 
 const Home = () => {
 
-    const [movies, setMovies] = useState();
+    // const [movies, setMovies] = useState();
 	const [currentPage, setCurrentPage] = useState(1);
-	const [searchTerm, setSearchTerm] = useState(''); 
+	// const [searchTerm, setSearchTerm] = useState(''); 
 	const itemsPerPage = 5;
+	const {data: movies} = useFetch (
+		"http://www.omdbapi.com/?apikey=61bac264&s=marvel",
+		currentPage
+	)
 
     // 61bac264
 
 	//Fetching from api
 	// const handleFetch = (page) => {
-		const startIndex = (currentPage - 1) * itemsPerPage + 1;
-		const endIndex = startIndex + itemsPerPage - 1;
+	// 	const startIndex = (currentPage - 1) * itemsPerPage + 1;
+	// 	const endIndex = startIndex + itemsPerPage - 1;
 
 	// 	fetch(`http://www.omdbapi.com/?apikey=61bac264&s=marvel&page=${page}`)
 	// 		.then((res) => {
@@ -29,11 +33,14 @@ const Home = () => {
 	// };
 
 	//new code
-	useEffect(() => {
-		const {data} = useFetch('http://www.omdbapi.com/?apikey=61bac264&s=marvel&page=1');
-		const slicedData = data ? data.slice(startIndex -1, endIndex) : [];
-		setMovies(slicedData);
-	},[currentPage]);
+	// const handleFetch = (page) => {
+	// 	setMovies(useFetch('http://www.omdbapi.com/?apikey=61bac264&s=marvel&page=1',currentPage))
+	// };
+	// useEffect(() => {
+	// 	const {data} = useFetch('http://www.omdbapi.com/?apikey=61bac264&s=marvel&page=1');
+	// 	const slicedData = data ? data.slice(startIndex -1, endIndex) : [];
+	// 	setMovies(slicedData);
+	// },[currentPage]);
 	// useEffect(() => {
 	// 	handleFetch(currentPage);
 	// }, [currentPage]);
@@ -74,6 +81,7 @@ const Home = () => {
         <>
             <div className="all-body">
                 <Navbar />
+				{/* <button onClick={handleFetch}>Search</button> ?  */}
                 {/* <div className="searchDiv">
                     <input type="text" className="searchBar form-control rounded"
 					 value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
